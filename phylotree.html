@@ -70,7 +70,7 @@
 		
 		#div-floater {
     position: fixed;
-    top: 150px;          /* Distance from top of the page */
+    top: 100px;          /* Distance from top of the page */
     right: 20px;        /* Distance from right of the page */
     max-width: 400px;   /* Optional: limit the width */
     background-color: white;  /* Optional: add background color */
@@ -110,19 +110,30 @@
       margin: 4px 0;
     }
 
+    .pull-right {
+    display: none;
+    }
+	.btn-info {
+	display: none;
+	}
+    .navbar-header {
+	display: none;
+	}
+	.form-control {
+	display: none;
+	}
+	
+
     </style>
 
 </head>
 <body>
-<button onclick="goBack()">Back to OG table</button>
+
 <script type='text/javascript'>
 function goBack() {
     window.history.back();
 }
 </script>
- 
-
- 
  
   <div id = "treeHTML" style = "visibility: hidden">
 
@@ -130,71 +141,42 @@ function goBack() {
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
+
+		
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
+            <!-- <span class="sr-only">Toggle navigation</span> -->
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">phylotree.js</a>
+		  
+            <!-- <a class="navbar-brand" href="#">Save tree</a> -->
         </div>
   
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+ 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Newick <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" data-toggle="modal" data-target="#newick_modal">Input Text</a></li>
-                <li><a href="#"><input type="file" id="newick_file"/></a></li>
-                <li class="divider"></li>
-                <li><a href="#" data-toggle="modal" data-target="#newick_export_modal">Export</a></li>
-              </ul>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Save tree <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" data-toggle="modal" data-target="#newick_export_modal">Export Newick</a></li>
+                </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Display options <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" id = 'display_dengrogram'>Dendrogram</a></li>
-                <li><a href="#" id = 'display_tree'>Tree</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Horizontal</a></li>
-                <li><a href="#">Vertical</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" id = "example_hiv_scaled" >HIV-1 RT</a></li>
-                <li><a href="#" id = "example_influenza_color">Unscaled IAV HA colored by host</a></li>
-                <li><a href="#" id = "example_NGS" >NGS copy diversity</a></li>
-                <li><a href="#" id = "example_GVZ" >Compare NGS consensus</a></li>
-                <li><a href="#" id = "example_hiv_compartments" >HIV-1 env multiple timepoints and compartments</a></li>
-              </ul>
-            </li>
+			
+		    <div class="navbar-btn navbar-right">
+            <a class="btn btn-info" href="javascript:void(0);" onclick="goBack()">Back to SOG table</a>
+            </div>
+
         </ul>
-  
-  
-            <div class="navbar-btn navbar-right">
-            <a class="btn btn-info" href="http://hyphy.org/resources/#labeling-branches-with-phylotree">Help</a>
-            <a class="btn btn-info" href="/documentation">Documentation</a>
-            </div>
-  
-            <div class="form-group navbar-form navbar-right">
-              <input type="text" id = 'branch_filter' class="form-control" placeholder="Filter branches on">
-            </div>
-  
-  
-  
-  
+
   
           <div class="row">
             <div class="col-md-4 navbar-right ">
                 <div class="navbar-form " role="search">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                Tag <span class="caret"></span>
-                            </button>
+
                               <ul class="dropdown-menu" id = "selection_name_dropdown">
                                 <li id = "selection_new"><a href="#">New selection set</a></li>
                                 <li id = "selection_delete" class = "disabled"><a href="#">Delete selection set</a></li>
@@ -203,35 +185,15 @@ function goBack() {
                             </ul>
                         </span>
   
-                        <input type="text" class="form-control" value = "Foreground" id = "selection_name_box" disabled>
-  
+                        <input type="text" class="form-control" value = "Foreground" id = "selection_name_box" disabled style="display: none;">
+                        
                         <span class="input-group-btn" id = "save_selection_name" style = "display: none" >
-                            <button type="button" class="btn btn-default" id = "cancel_selection_button" >
-                                Cancel
-                            </button>
-                            <button type="button" class="btn btn-default" id = "save_selection_button">
-                                Save
-                            </button>
+
+
                         </span>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Selection <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li><a href="#" id = "filter_add">Add filtered nodes to selection</a></li>
-                                <li><a href="#" id = "filter_remove">Remove filtered nodes from selection</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#" id = "select_all">Select all</a></li>
-                                <li><a href="#" id = "select_all_internal">Select all internal nodes</a></li>
-                                <li><a href="#" id = "select_all_leaves">Select all leaf nodes</a></li>
-                                <li><a href="#" id = "clear_internal">Clear all internal nodes</a></li>
-                                <li><a href="#" id = "clear_leaves">Clear all leaves</a></li>
-                                <li><a href="#" id = "select_none">Clear selection</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#" id = "mp_label">Label internal nodes using maximum parsimony</a></li>
-                                <li><a href="#" id = "and_label">Label internal nodes using conjunction (AND) </a></li>
-                                <li><a href="#" id = "or_label">Label internal nodes using disjunction (OR) </a></li>
-                            </ul>
-                        </span>
+
                       </div>
+
                 </div>
             </div>
         </div>
@@ -239,6 +201,8 @@ function goBack() {
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </div>
+	
+
   
     <div class="modal" id = 'newick_modal'>
       <div class="modal-dialog">
