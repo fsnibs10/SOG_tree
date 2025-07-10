@@ -270,12 +270,12 @@ function goBack() {
                     <input type="radio" name="options" class = "phylotree-layout-mode" data-mode = "radial" autocomplete="off" title = "Layout radially"> Radial
                   </label>
                 </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm active" id = "toggle_animation" title = "Toggle animation">
-                        Animation
-                    </button>
-                  </label>
-                </div>
+                <!-- <div class="btn-group"> -->
+                    <!-- <button type="button" class="btn btn-default btn-sm active" id = "toggle_animation" title = "Toggle animation"> -->
+                        <!-- Animation -->
+                    <!-- </button> -->
+                  <!-- </label> -->
+                <!-- </div> -->
   
                 <div class="btn-group" data-toggle="buttons">
                   <label class="btn btn-default active btn-sm">
@@ -389,9 +389,11 @@ function goBack() {
                 default_tree_settings();
                 tree.node_circle_size(0);
                 tree.radial(false);
-                //tree.options({'top-bottom-spacing': 'fit-to-size'}, false);
-                //tree.options({'left-right-spacing': 'fit-to-size'}, false);
-                //tree.size([1500,1500]);
+
+                //tree.options({'top-bottom-spacing': 'fixed-step'}, false);
+                //tree.options({'left-right-spacing': 'fixed-step'}, false);
+                //tree.size([1200,1000]);
+
                 tree(res).svg(svg).layout();
                 update_controls();
             } else {
