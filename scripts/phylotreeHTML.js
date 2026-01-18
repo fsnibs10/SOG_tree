@@ -219,6 +219,7 @@ function default_tree_settings () {
     tree.selection_label (current_selection_name);
     tree.node_circle_size (undefined);
     tree.radial (false);
+    tree.font_size(18);
     tree.handle_node_click = function(node) {};
 }
 
@@ -669,4 +670,5 @@ $('#download_tree_btn').on('click', function (e) {
     document.body.removeChild(anchor);
     $('#newick_export_modal').modal('hide');
 });
+
 
