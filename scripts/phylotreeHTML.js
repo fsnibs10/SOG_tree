@@ -653,3 +653,20 @@ $( document ).ready( function () {
 });
 
 
+
+$('#download_tree_btn').on('click', function (e) {
+    var text_to_save = $('textarea[id$="nwk_export_spec"]').val();
+    var blob = new Blob([text_to_save], {type: 'text/plain'});
+    var anchor = document.createElement('a');
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    anchor.download = (id ? id : 'tree') + '.nwk';
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target = '_blank';
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+    $('#newick_export_modal').modal('hide');
+});
+
