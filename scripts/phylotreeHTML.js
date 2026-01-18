@@ -219,6 +219,7 @@ function default_tree_settings () {
     tree.selection_label (current_selection_name);
     tree.node_circle_size (undefined);
     tree.radial (false);
+    tree.handle_node_click = function(node) {};
 }
 
 
@@ -382,6 +383,7 @@ catch (e) {
 }
 
 function edge_colorizer (element, data) {
+    element.on('click', null);
    //console.log (data[current_selection_name]);
 try {
     var count_class = 0;
@@ -649,3 +651,5 @@ $( document ).ready( function () {
     $("#selection_name_dropdown").get(0).addEventListener(selection_menu_element_action,selection_handler_name_dropdown,false);
     update_selection_names();
 });
+
+
