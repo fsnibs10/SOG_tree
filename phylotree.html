@@ -408,6 +408,27 @@
 
                 tree(res).svg(svg).layout();
                 update_controls();
+
+                // --- INSERT START ---
+                // Align scale bar with the root of the tree
+                setTimeout(function() {
+                    var root;
+                    // Find the root node (node with no parent)
+                    tree.traverse_and_compute(function(n) {
+                        if (!n.parent) root = n;
+                    });
+                    
+                    var scale_bar = d3.select(".tree-scale-bar");
+                    if (root && !scale_bar.empty()) {
+                        // Get the current transform of the scale bar
+                        var current_transform = d3.transform(scale_bar.attr("transform"));
+                        // Set the x translation to the root's screen_x
+                        current_transform.translate[0] = root.screen_x;
+                        // Apply the new transform
+                        scale_bar.attr("transform", current_transform.toString());
+                    }
+                }, 100); // Small delay to ensure rendering is complete
+                // --- INSERT END ---
             } else {
                 console.error("No 'id' parameter provided in the URL");
             }
