@@ -219,7 +219,7 @@ function default_tree_settings () {
     tree.selection_label (current_selection_name);
     tree.node_circle_size (undefined);
     tree.radial (false);
-    tree.font_size(16);
+    tree.font_size(12);
     tree.handle_node_click = function(node) {};
 }
 
